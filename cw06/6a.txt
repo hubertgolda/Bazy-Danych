@@ -1,0 +1,35 @@
+#6a_1
+zamowienia(id_produktu, nazwa_produktu, id_klienta, nazwa_klienta, data_zamowienia, cena_produktu, ilość, VAT, suma_brutto, suma_netto)
+
+Zależności funkcyjne:
+
+id_produktu -> nazwa_produktu
+id_klienta -> nazwa_klienta
+id_produktu, data_zamowienia -> cena_produktu
+id_produktu -> VAT
+id_produktu, ilość -> suma_netto
+suma_netto, VAT -> suma_brutto
+id_klienta, data_zamowienia -> id_produktu, ilość
+id_klienta, data_zamowienia, id_produktu -> cena_produktu
+id_klienta, data_zamowienia, id_produktu -> VAT
+id_klienta, data_zamowienia -> suma_brutto
+
+#6a_2
+
+Klucze kandydujące:
+id_produktu, id_klienta, data_zamowienia
+id_produktu, nazwa_produktu
+id_klienta, nazwa_klienta
+
+
+#6a_3
+
+pomieszczenia(id_pomieszczenia, numer_pomieszczenia, id_budynku, powierzchnia, liczba_okien, liczba_drzwi, ulica, miasto, kod_pocztowy)
+
+Zależności funkcyjne:
+id_pomieszczenia -> numer_pomieszczenia, id_budynku, powierzchnia, liczba_okien, liczba_drzwi, ulica, miasto, kod_pocztowy
+numer_pomieszczenia, id_budynku -> id_pomieszczenia, powierzchnia, liczba_okien, liczba_drzwi, ulica, miasto, kod_pocztowy
+
+Klucze kandydujące:
+id_pomieszczenia
+numer_pomieszczenia, id_budynku
