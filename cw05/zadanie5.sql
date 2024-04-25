@@ -134,14 +134,12 @@ WHERE s.kwota > 1000;
 
 -- 6c.:
 
-SELECT id_pracownika
-FROM ksiegowosc.pracownicy p
-JOIN ksiegowosc.premia gp ON p.id_pracownika = p.id_pracownika
-WHERE kwota > 2000
-AND NOT EXISTS (
-    SELECT *
-    FROM ksiegowosc.wynagrodzenie
-    WHERE wynagrodzenie.id_pracownika = p.id_pracownika);
+select p.id_pracownika
+from ksiegowosc.pracownicy p 
+join ksiegowosc.wynagrodzenie w on w.id_pracownika =p.id_pracownika 
+join ksiegowosc.pensja pn on w.id_pensji =pn.id_pensji 
+join ksiegowosc.premia pr on w.id_premii =pr.id_premii 
+where pr.kwota=0 and pn.kwota > 2000;
 
 -- 6d.:
 
@@ -188,4 +186,12 @@ FROM ksiegowosc.pracownicy
 JOIN ksiegowosc.wynagrodzenie ON ksiegowosc.pracownicy.id_pracownika = ksiegowosc.wynagrodzenie.id_pracownika
 JOIN ksiegowosc.pensja ON ksiegowosc.wynagrodzenie.id_pensji = ksiegowosc.pensja.id_pensji
 ORDER BY pensja.kwota;
+
+-- 6j.:
+
+select p.imie, p.nazwisko, pn.kwota as pensja, pr.kwota as premia
+from ksiegowosc.pracownicy p 
+join ksiegowosc.pensja pn on p.id_pracownika =pn.id_pensji 
+join ksiegowosc.premia pr on p.id_pracownika =pr.id_premii 
+order by pn.kwota, pr.kwota;
 
